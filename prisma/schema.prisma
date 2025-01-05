@@ -1,5 +1,5 @@
 datasource db {
-  provider     = "postgresql"
+  provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
@@ -311,7 +311,7 @@ model ClassName {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   funnelId   String
-  customData String?
+  customData String?  @db.LongText
   Funnel     Funnel   @relation(fields: [funnelId], references: [id], onDelete: Cascade)
 
   @@index([funnelId])
@@ -324,7 +324,7 @@ model FunnelPage {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   visits       Int      @default(0)
-  content      String?
+  content      String?  @db.LongText
   order        Int
   previewImage String?  @db.Text
   funnelId     String
@@ -396,8 +396,8 @@ model Notification {
 }
 
 enum Plan {
-  price_1OzWu5SCZtpG0Bi9Vn0PF4Q5
-  price_1OzWu4SCZtpG0Bi9uaOLW13b
+  price_1OYxkqFj9oKEERu1NbKUxXxN
+  price_1OYxkqFj9oKEERu1KfJGWxgN
 }
 
 model Subscription {
